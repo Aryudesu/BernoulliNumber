@@ -1,4 +1,5 @@
 import math
+import combination
 
 
 def inputNum(mes="InputNum > "):
@@ -10,30 +11,14 @@ def inputNum(mes="InputNum > "):
             print('Input "Num" Please')
 
 
-def combination(a, b):
-    n, m = a, b
-    if n < 2 * m:
-        m = n - m
-    if n == m or m == 0:
-        return 1
-    tmp = [n - i for i in range(m)]
-    for i in range(1, m + 1):
-        for j in range(m):
-            if not tmp[j] % i:
-                tmp[j] //= i
-                break
-    result = 1
-    for i in tmp:
-        result *= i
-    return result
-
-
 def calcBernoulli(num):
     res = [[1, 1]]
     for i in range(1, num + 1):
-        numer, denom = res[0][0] * combination(i + 1, 0), res[0][1]
+        numer, denom = res[0][0] * combination.combination(i + 1, 0), res[0][1]
         for j in range(1, i):
-            numer = numer * res[j][1] + denom * res[j][0] * combination(i + 1, j)
+            numer = numer * res[j][1] + denom * res[j][0] * combination.combination(
+                i + 1, j
+            )
             denom = denom * res[j][1]
             if numer:
                 g = math.gcd(numer, denom)
