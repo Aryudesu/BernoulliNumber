@@ -1,6 +1,15 @@
 import math
 
 
+def inputNum(mes="InputNum > "):
+    while True:
+        try:
+            print(mes, end="")
+            return int(input())
+        except:
+            print('Input "Num" Please')
+
+
 def combination(a, b):
     n, m = a, b
     if n < 2 * m:
@@ -45,7 +54,10 @@ def calcBernoulli(num):
     return res
 
 
-num = 10
-ber = calcBernoulli(num + 1)
-for idx in range(num + 2):
-    print(f"B_{idx} = {ber[idx][0]} / {ber[idx][1]}")
+num = inputNum()
+ber = calcBernoulli(num)
+for idx in range(num + 1):
+    if ber[idx][0]:
+        print(f"B_{idx} = {ber[idx][0]} / {ber[idx][1]}")
+    else:
+        print(f"B_{idx} = 0")
